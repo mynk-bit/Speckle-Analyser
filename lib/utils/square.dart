@@ -7,10 +7,11 @@ class MySquare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      
+      padding: const EdgeInsets.fromLTRB(25, 8, 25, 8),
       child: Container(
         height: 100,
-        color: Colors.deepPurple[200],
+        color: Color(0xFF8167D7),
         child: Center(
           child: Text(
             child,
@@ -18,6 +19,7 @@ class MySquare extends StatelessWidget {
               fontSize: 35,
             ),
           ),
+          
         ),
       ),
     );

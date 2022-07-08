@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:speckle_analyser/Pages/parameter.dart';
 import 'method.dart';
 
@@ -11,30 +14,38 @@ class methodPage extends StatefulWidget {
 }
 
 class _methodPageState extends State<methodPage> {
-
   void _methods() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => anaMethods(
-        )));
-  }
-    void _paraoptions() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => paraOptions(
-        )));
+        context, MaterialPageRoute(builder: (context) => anaMethods()));
   }
 
+  void _paraoptions() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => paraOptions()));
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.visImage);
     return Scaffold(
       appBar: AppBar(title: Center(child: Text('Visualization'))),
       body: Container(
-        child: Image.file(
-          widget.visImage,
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          fit: BoxFit.cover,
-        ),
+           child: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              for(XFile image in widget.visImage)
+              Stack(
+                children: [
+                  Image.file(
+                    File(image.path),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              )
+            ],
+           ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Stack(

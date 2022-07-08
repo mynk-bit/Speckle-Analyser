@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:speckle_analyser/Pages/image_screen.dart';
+import '../utils/bottombar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -14,25 +15,48 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   File? pickedImage;
+  File? pickedImage2;
+  final ImagePicker imagePicker = ImagePicker();
+  List<XFile>? imageFileList = [];
 
   _pickImage(ImageSource imageType) async {
     try {
-      final photo = await ImagePicker().pickImage(source: imageType);
-      if (photo == null) return;
-      final tempImage = File(photo.path);
-      // setState(() {
-      //   pickedImage = tempImage;
-      // });
+       List<XFile>? selectedImages = await ImagePicker().pickMultiImage();
+      setState(() {
+         if (selectedImages!.isNotEmpty) {
+        imageFileList = selectedImages;
+      }
+      });
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => imagePage(
-            pickedImage: tempImage,
-          )));
+          context,
+          MaterialPageRoute(
+              builder: (context) => imagePage(
+                    pickedImage: imageFileList,
+                  )));
 
       Get.back();
     } catch (error) {
       debugPrint(error.toString());
     }
   }
+
+  // _pickImage(ImageSource imageType) async {
+  //   try {
+  //     final photo = await ImagePicker().pickImage(source: imageType);
+  //     if (photo == null) return;
+  //     final tempImage = File(photo.path);
+  //     Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //             builder: (context) => imagePage(
+  //                   pickedImage: tempImage,
+  //                 )));
+
+  //     Get.back();
+  //   } catch (error) {
+  //     debugPrint(error.toString());
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -95,21 +119,24 @@ class _MyHomePageState extends State<MyHomePage> {
       )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 55, vertical: 100),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 150),
         child: Row(
           children: [
             FloatingActionButton(
+              heroTag: null,
               onPressed: () => _pickImage(ImageSource.camera),
               child: Icon(Icons.camera),
             ),
             Spacer(),
             FloatingActionButton(
+              heroTag: null,
               onPressed: () => _pickImage(ImageSource.gallery),
               child: Icon(Icons.upload),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: myBottombar(),
     );
   }
 }
