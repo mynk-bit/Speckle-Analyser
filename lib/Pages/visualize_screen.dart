@@ -59,8 +59,9 @@ class _methodPageState extends State<methodPage> {
             child: FloatingActionButton(
               heroTag: 'back',
               onPressed: () => _methods(),
+              
               child: const Icon(
-                Icons.arrow_left,
+                Icons.analytics,
                 size: 40,
               ),
               shape: RoundedRectangleBorder(
@@ -75,7 +76,7 @@ class _methodPageState extends State<methodPage> {
               heroTag: 'next',
               onPressed: () => _paraoptions(),
               child: const Icon(
-                Icons.arrow_right,
+                Icons.more,
                 size: 40,
               ),
               shape: RoundedRectangleBorder(

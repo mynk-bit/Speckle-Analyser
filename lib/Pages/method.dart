@@ -24,10 +24,6 @@ class _anaMethodsState extends State<anaMethods> {
     'Standard Deviation',
   ];
   var _selectedidx = -1;
-  void executeAfterBuild(String methodname, BuildContext context) {
-    showLoaderDialog(context);
-  }
-
   showLoaderDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
       content: new Row(
@@ -57,8 +53,7 @@ class _anaMethodsState extends State<anaMethods> {
       request.files.add(await http.MultipartFile.fromPath(
           'image', widget.methodImage[i].path));
     }
-    // var streamedResponse = await request.send();
-    // var response = await http.Response.fromStream(streamedResponse);
+
     print("inside upload image");
     http.StreamedResponse response = await request.send();
     print(response.statusCode);
@@ -94,7 +89,6 @@ class _anaMethodsState extends State<anaMethods> {
                   _selectedidx = index;
                 });
                 print("images");
-                // executeAfterBuild(_post[index], context);
                 UploadImage(methodname: _post[index].toString().toLowerCase());
               },
               child: SizedBox(
