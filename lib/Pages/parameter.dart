@@ -155,7 +155,7 @@ class _paraOptionsState extends State<paraOptions> {
           ),
         ),
       ),
- 
+    bottomNavigationBar: myBottombar(),
     );
   }
 }

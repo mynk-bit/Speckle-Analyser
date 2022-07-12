@@ -6,7 +6,7 @@ import 'package:speckle_analyser/Pages/parameter.dart';
 import 'method.dart';
 
 class methodPage extends StatefulWidget {
-  final visImage;
+  var visImage;
   methodPage({Key? key, this.visImage}) : super(key: key);
 
   @override
@@ -16,7 +16,9 @@ class methodPage extends StatefulWidget {
 class _methodPageState extends State<methodPage> {
   void _methods() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => anaMethods()));
+        context, MaterialPageRoute(builder: (context) => anaMethods(
+          methodImage: widget.visImage,
+        )));
   }
 
   void _paraoptions() {
@@ -26,7 +28,7 @@ class _methodPageState extends State<methodPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.visImage);
+    // print(widget.visImage);
     return Scaffold(
       appBar: AppBar(title: Center(child: Text('Visualization'))),
       body: Container(

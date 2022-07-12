@@ -40,23 +40,23 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  // _pickImage(ImageSource imageType) async {
-  //   try {
-  //     final photo = await ImagePicker().pickImage(source: imageType);
-  //     if (photo == null) return;
-  //     final tempImage = File(photo.path);
-  //     Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //             builder: (context) => imagePage(
-  //                   pickedImage: tempImage,
-  //                 )));
+  _pickCamera(ImageSource imageType) async {
+    try {
+      final photo = await ImagePicker().pickImage(source: imageType);
+      if (photo == null) return;
+      final tempImage = File(photo.path);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => imagePage(
+                    pickedImage: tempImage,
+                  )));
 
-  //     Get.back();
-  //   } catch (error) {
-  //     debugPrint(error.toString());
-  //   }
-  // }
+      Get.back();
+    } catch (error) {
+      debugPrint(error.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    'Attach Image from your Local Dirctory',
+                    'Upload Image from your Local Dirctory',
                     style: TextStyle(
                       color: Color.fromRGBO(0, 0, 0, 4.6),
                       fontSize: 20,
@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             FloatingActionButton(
               heroTag: null,
-              onPressed: () => _pickImage(ImageSource.camera),
+              onPressed: () => _pickCamera(ImageSource.camera),
               child: Icon(Icons.camera),
             ),
             Spacer(),
@@ -132,6 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
               heroTag: null,
               onPressed: () => _pickImage(ImageSource.gallery),
               child: Icon(Icons.upload),
+              
             ),
           ],
         ),
