@@ -24,6 +24,7 @@ class _anaMethodsState extends State<anaMethods> {
     'Standard Deviation',
   ];
   var _selectedidx = -1;
+
   showLoaderDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
       content: new Row(
@@ -43,7 +44,9 @@ class _anaMethodsState extends State<anaMethods> {
     );
   }
 
-  UploadImage({String methodname = 'fujji'}) async {
+  UploadImage(
+      {String methodname = 'fujji', required BuildContext context}) async {
+    showLoaderDialog(context);
     var request = http.MultipartRequest(
         'POST',
         Uri.parse(
@@ -57,10 +60,10 @@ class _anaMethodsState extends State<anaMethods> {
     print("inside upload image");
     http.StreamedResponse response = await request.send();
     print(response.statusCode);
-    // showLoaderDialog(context);
     if (response.statusCode == 200) {
       var methodImage = await response.stream.bytesToString();
       print(methodImage);
+      Navigator.of(context).pop();
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -69,6 +72,7 @@ class _anaMethodsState extends State<anaMethods> {
                     methodname: methodname,
                   )));
     } else {
+      
       print(response.reasonPhrase);
     }
   }
@@ -89,7 +93,9 @@ class _anaMethodsState extends State<anaMethods> {
                   _selectedidx = index;
                 });
                 print("images");
-                UploadImage(methodname: _post[index].toString().toLowerCase());
+                UploadImage(
+                    methodname: _post[index].toString().toLowerCase(),
+                    context: context);
               },
               child: SizedBox(
                 height: 100,

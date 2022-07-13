@@ -20,50 +20,47 @@ class imagePage extends StatefulWidget {
 }
 
 class _imagePageState extends State<imagePage> {
+  showAlertDialog(BuildContext context) {
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+      Navigator.of(context).pop();
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => methodPage(
+                      visImage: widget.pickedImage,
+                    )));
+      },
+    );
 
+    AlertDialog alert = AlertDialog(
+      title: Text("From Given Data set",
+      style: TextStyle(
+           fontWeight: FontWeight.bold,
+      ),
+      ),
+      content: Text("Fuji and Lasca show the most promising results",
+      style: TextStyle(
+        fontSize: 17,
+      ),
+      ),
+      actions: [
+        okButton,
+      ],
+    );
 
-   showAlertDialog(BuildContext context) {
-
-  Widget okButton = TextButton(
-    child: Text("OK"),
-    onPressed: () { 
-         Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => methodPage(
-                  visImage: widget.pickedImage,
-                )));
-    },
-  );
-
-  AlertDialog alert = AlertDialog(
-    title: Text("My title"),
-    content: Text("This is my message."),
-    actions: [
-      okButton,
-    ],
-  );
-
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}
-
-
-
-
-
-
-
-
-
-
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   void _nextPage() {
     showAlertDialog(context);
+    
   }
 
   @override

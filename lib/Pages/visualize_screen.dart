@@ -16,9 +16,11 @@ class methodPage extends StatefulWidget {
 class _methodPageState extends State<methodPage> {
   void _methods() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => anaMethods(
-          methodImage: widget.visImage,
-        )));
+        context,
+        MaterialPageRoute(
+            builder: (context) => anaMethods(
+                  methodImage: widget.visImage,
+                )));
   }
 
   void _paraoptions() {
@@ -32,10 +34,10 @@ class _methodPageState extends State<methodPage> {
     return Scaffold(
       appBar: AppBar(title: Center(child: Text('Visualization'))),
       body: Container(
-           child: ListView(
-            scrollDirection: Axis.vertical,
-            children: [
-              for(XFile image in widget.visImage)
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: [
+            for (XFile image in widget.visImage)
               Stack(
                 children: [
                   Image.file(
@@ -46,8 +48,8 @@ class _methodPageState extends State<methodPage> {
                   ),
                 ],
               )
-            ],
-           ),
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Stack(
@@ -56,34 +58,62 @@ class _methodPageState extends State<methodPage> {
           Positioned(
             left: 30,
             bottom: 20,
-            child: FloatingActionButton(
-              heroTag: 'back',
-              onPressed: () => _methods(),
-              
-              child: const Icon(
-                Icons.analytics,
-                size: 40,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+            child: SizedBox.fromSize(
+              size: Size(80, 80),
+              child: ClipOval(
+                child: Material(
+                  color: Color(0xFF8167D7),
+                  child: InkWell(
+                    splashColor: Colors.white,
+                    onTap: () => _methods(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.analytics,
+                          color: Colors.white,
+                        ), // <-- Icon
+                        Text(
+                          "Analysis",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ), // <-- Text
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
           Positioned(
-            bottom: 20,
-            right: 30,
-            child: FloatingActionButton(
-              heroTag: 'next',
-              onPressed: () => _paraoptions(),
-              child: const Icon(
-                Icons.more,
-                size: 40,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ),
+              bottom: 20,
+              right: 30,
+              child: SizedBox.fromSize(
+                size: Size(80, 80),
+                child: ClipOval(
+                  child: Material(
+                    color: Color(0xFF8167D7),
+                    child: InkWell(
+                      splashColor: Colors.white,
+                      onTap: ()=> _paraoptions(),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(Icons.select_all,
+                          color: Colors.white,
+                          ), // <-- Icon
+                          Text("Parameters",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          ), // <-- Text
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              )),
         ],
       ),
     );
