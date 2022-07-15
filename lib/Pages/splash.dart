@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'home.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+// import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class splash extends StatefulWidget {
@@ -30,26 +30,34 @@ class _splashState extends State<splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          SvgPicture.asset(
-            'assets/images/splash.svg',
-            alignment: Alignment.center,
-           
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/flash.png"),
+            fit: BoxFit.cover,
           ),
-          Container(
-            child: Center(
-              child: const Text(
-                'Speckle Analyser',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-            ),
-          ),
-        ],
+        ),
+        child: null /* add child content here */,
       ),
     );
   }
 }
+
+// Scaffold(
+//       body: Stack(
+//         children: <Widget>[
+//           Column(
+//             children: [
+//               SvgPicture.asset(
+//                 'assets/images/splash.svg',
+//                 alignment: Alignment.center,
+//                 height: MediaQuery.of(context).size.height,
+//                 width: MediaQuery.of(context).size.width ,
+
+//               ),
+//               
+//             ],
+//           )
+//         ],
+//       ),
+//     );

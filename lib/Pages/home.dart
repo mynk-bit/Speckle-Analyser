@@ -21,11 +21,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _pickImage(ImageSource imageType) async {
     try {
-       List<XFile>? selectedImages = await ImagePicker().pickMultiImage();
+      List<XFile>? selectedImages = await ImagePicker().pickMultiImage();
       setState(() {
-         if (selectedImages!.isNotEmpty) {
-        imageFileList = selectedImages;
-      }
+        if (selectedImages!.isNotEmpty) {
+          imageFileList = selectedImages;
+        }
       });
       Navigator.push(
           context,
@@ -65,8 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
           child: ListView(
         children: [
-          SvgPicture.asset(
-            'assets/images/homenav.svg',
+          Image(
+            image: AssetImage('assets/images/homenav.png'),
+             fit: BoxFit.cover,
           ),
           SvgPicture.asset(
             'assets/images/undraw.svg',
@@ -132,7 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
               heroTag: null,
               onPressed: () => _pickImage(ImageSource.gallery),
               child: Icon(Icons.upload),
-              
             ),
           ],
         ),

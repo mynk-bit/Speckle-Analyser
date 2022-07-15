@@ -37,6 +37,7 @@ flutter:
 
   assets:
     - assets/images/splash.svg
-    - assets/images/homenav.svg
+    - assets/images/homenav.png
     - assets/images/undraw.svg
     - assets/images/seed.jpg
+    - assets/images/flash.png
