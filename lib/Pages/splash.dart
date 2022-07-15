@@ -35,9 +35,7 @@ class _splashState extends State<splash> {
           SvgPicture.asset(
             'assets/images/splash.svg',
             alignment: Alignment.center,
-            // fit: BoxFit.fill,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+           
           ),
           Container(
             child: Center(
